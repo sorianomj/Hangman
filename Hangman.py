@@ -1,10 +1,16 @@
 import random
+import sys
 
 def generateRandomWord():
 	wordIndex=random.randint(0,counter-1);
 	randomWord=file.readlines()[wordIndex];	
 	return randomWord;
 
+def printBlanks(numberOfChars):
+	num=numberOfChars;
+	for num in range(0,numberOfChars):
+		sys.stdout.write("_ ");
+	print;	
 
 
 file=open('/Users/MarkSoriano/Documents/Python workspace/Hangman/dictionary','r');
@@ -23,6 +29,7 @@ print wordToGuess;
 
 while wrongGuess:
 	if not playedAgain:
+		printBlanks(len(wordToGuess));
 		guess=raw_input("Guess the word: ");
 		print guess;
 		if guess != wordToGuess.rstrip('\n'):
@@ -38,6 +45,7 @@ while wrongGuess:
 			else:
 				wrongGuess=False;
 	else:
+		printBlanks(len(newWord));
 		guess=raw_input("Guess the word: ");
 		if guess != newWord.rstrip('\n'):
 			print("Wrong guess! Try again");
@@ -52,4 +60,5 @@ while wrongGuess:
 			else:
 				wrongGuess=False;	
 file.close();
+
 
